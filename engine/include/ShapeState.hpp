@@ -2,13 +2,7 @@
 #define SHAPESTATE
 #include <vector>
 #include "Shape.hpp"
-
-enum Direction : uint8_t {
-    UP = 0b00,
-    LEFT = 0b01,
-    DOWN = 0b10,
-    RIGHT = 0b11
-};
+#include "Utils.hpp"
 
 class ShapeState {
     public:
@@ -38,23 +32,29 @@ class ShapeState {
         if cant rotate then update position kick until can?
 
     */
-    std::vector<int> getCoordinates();
+    std::vector<int> getPixels();
     int getShapeXPosition();
     int getShapeYPosition();
-
-    bool updateShapeXPosition();
-    bool updateShapeYPosition();
 
     // Rotates shape 90 degrees
     // Do we need to know the rotation of the shape? Wouldn't that be just be stored in position
     // Or shape is static representation and rotation is visual
-    bool rotateShape();
+
+    bool updateShape(Shape* newShape);
+
+    bool moveLeft();
+    bool moveRight();
+    bool moveDown();
+    bool rotate();
 
     private:
     Shape* shape;
     int xPosition;
     int yPosition;
-    Direction direction;
+    Direction rotation;
+
+    bool updateShapeXPosition();
+    bool updateShapeYPosition();
 
 
 };

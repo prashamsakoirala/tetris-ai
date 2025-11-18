@@ -6,6 +6,9 @@ class Grid {
 
     Grid(int xDimension, int yDimension);
 
+    int getXDimension();
+    int getYDimension();
+
     private:
 
     int xDimension;
