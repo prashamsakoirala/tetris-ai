@@ -1,17 +1,18 @@
 #ifndef GRIDSTATE
 #define GRIDSTATE
-#include <Grid.hpp>
 #include <vector>
+#include <Grid.hpp>
 
+using std::vector;
 
 class GridState {
     public:
     
-    GridState(Grid* grid, std::vector<int> filledBlocks);
+    GridState(Grid* grid, vector<vector<int>>& filledBlocks);
     
     GridState(Grid* grid);
 
-    bool isCollision(int xPosition, int yPosition);
+    bool isOccupied(int xPosition, int yPosition);
     
     bool addCoordinate(int xCoordinate, int yCoordinate);
 
@@ -19,7 +20,7 @@ class GridState {
 
     private:
     Grid* grid;
-    std::vector<int> filledBlocks;
+    vector<vector<int>> filledBlocks;
     
     bool clearRow(int row);
     bool rowFilled(int row);

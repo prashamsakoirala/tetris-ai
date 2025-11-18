@@ -3,25 +3,27 @@
 #include <vector>
 #include <string>
 
+using std::vector;
+using std::string;
+
 class Shape {
     public:
     // Initalize shape, just get shape by returning coordinates
     // Constructor
     // validates based on rulebook? or constraints?
-    Shape(std::string name, std::vector<vector<int>> position, int xPivot, int yPivot);
+    Shape(string name, vector<vector<int>> position, int xPivot, int yPivot);
     
     // Return all coordinates in shape...
     // Should I have a shape validator
-    std::vector<vector<int>> getShape();
-    std::string getShapeName();
+    vector<vector<int>> getShape();
+    string getShapeName();
     int getShapeXPivot();
     int getShapeYPivot();
 
     private:
 
-    std::string name;
-    std::vector<vector<int>> position;
-    int xPivot, int yPivot;
+    string name;
+    vector<vector<int>> position;
 
 };
 

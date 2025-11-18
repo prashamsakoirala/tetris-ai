@@ -8,4 +8,6 @@ enum Direction : uint8_t {
     RIGHT = 0b11
 };
 
+Direction nextDirection(Direction dir);
+
 #endif

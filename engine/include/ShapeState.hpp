@@ -1,10 +1,12 @@
 #ifndef SHAPESTATE
 #define SHAPESTATE
 #include <vector>
+#include <map>
 #include "Shape.hpp"
 #include "Utils.hpp"
 
 using std::vector;
+using std::map;
 
 class ShapeState {
     public:
@@ -12,7 +14,7 @@ class ShapeState {
     // Constructor
     // rotation -> 0, 1, 
     // validates based on rulebook? or constraints?
-    ShapeState(Shape* shape, int xPosition, int yPosition, Direction rotation);
+    ShapeState(Shape shape, int xPosition, int yPosition, Direction rotation);
     
     // Return all coordinates in shape...
     // Should I have a shape validator
@@ -34,13 +36,13 @@ class ShapeState {
         if cant rotate then update position kick until can?
 
     */
-    std::vector<vector<int>> getPixels();
+    vector<vector<int>> getPixels();
 
     // Rotates shape 90 degrees
     // Do we need to know the rotation of the shape? Wouldn't that be just be stored in position
     // Or shape is static representation and rotation is visual
 
-    bool updateShape(Shape* newShape);
+    bool updateShape(Shape newShape);
     bool removeCurrentShape();
 
     bool moveLeft();
@@ -54,9 +56,9 @@ class ShapeState {
     int yPosition;
     Direction rotation;
 
-    bool updateShapeXPosition();
-    bool updateShapeYPosition();
-
+    bool updateShapeXPosition(int xPosition);
+    bool updateShapeYPosition(int yPosition);
+    std::map<Direction, vector<vector<int>>>* rotationMap;
 
 };
 
