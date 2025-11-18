@@ -4,6 +4,8 @@
 #include "Shape.hpp"
 #include "Utils.hpp"
 
+using std::vector;
+
 class ShapeState {
     public:
     // Initalize shape, just get shape by returning coordinates
@@ -32,15 +34,14 @@ class ShapeState {
         if cant rotate then update position kick until can?
 
     */
-    std::vector<int> getPixels();
-    int getShapeXPosition();
-    int getShapeYPosition();
+    std::vector<vector<int>> getPixels();
 
     // Rotates shape 90 degrees
     // Do we need to know the rotation of the shape? Wouldn't that be just be stored in position
     // Or shape is static representation and rotation is visual
 
     bool updateShape(Shape* newShape);
+    bool removeCurrentShape();
 
     bool moveLeft();
     bool moveRight();
