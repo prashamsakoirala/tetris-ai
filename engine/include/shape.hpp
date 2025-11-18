@@ -11,14 +11,12 @@ class Shape {
     // Initalize shape, just get shape by returning coordinates
     // Constructor
     // validates based on rulebook? or constraints?
-    Shape(string name, vector<vector<int>> position, int xPivot, int yPivot);
+    Shape(string name, vector<vector<int>> position);
     
     // Return all coordinates in shape...
     // Should I have a shape validator
     vector<vector<int>> getShape();
     string getShapeName();
-    int getShapeXPivot();
-    int getShapeYPivot();
 
     private:
 

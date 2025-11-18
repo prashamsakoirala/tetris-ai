@@ -1,6 +1,6 @@
 #include "Shape.hpp"
 
-Shape::Shape(string name, vector<vector<int>> position, int xPivot, int yPivot){
+Shape::Shape(string name, vector<vector<int>> position){
     this->name = name;
     this->position = position;
 }
