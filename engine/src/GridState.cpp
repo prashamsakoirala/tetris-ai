@@ -1,8 +1,14 @@
 #include "GridState.hpp"
 
 GridState::GridState(Grid* grid, vector<vector<int>>& existingBlocks){
-    this->grid = grid;
-    this->filledBlocks = existingBlocks;
+    if (validateExistingBlocks(existingBlocks, grid->getXDimension(), grid->getYDimension())){
+        this->grid = grid;
+        this->filledBlocks = existingBlocks;
+    } else {
+        throw std::invalid_argument("Invalid existing blocks");
+    }
+    // each existing block should be within grid's bounds, check to make sure it is?
+
 }
 
 GridState::GridState(Grid* grid){
@@ -11,6 +17,7 @@ GridState::GridState(Grid* grid){
 }
 
 bool GridState::isOccupied(int xPosition, int yPosition){
+    //if position not within bounds return false?
     for (auto &block : filledBlocks){
         int xPos = block[0];
         int yPos = block[1];
@@ -22,6 +29,7 @@ bool GridState::isOccupied(int xPosition, int yPosition){
 }
 
 bool GridState::addCoordinate(int xCoordinate, int yCoordinate){
+    // if coordinate is out of bounds, then return false? or make sure to check bounds before calling
     if (!isOccupied(xCoordinate, yCoordinate)){
         vector<int> updatedCoords;
         updatedCoords.push_back(xCoordinate);
@@ -81,4 +89,21 @@ bool GridState::checkAndClearRows(){
     }
 
     return anyCleared;
+}
+
+
+bool validateExistingBlocks(vector<vector<int>> blocks, int xDimensions, int yDimensions){
+    int totalBlocks = 0;
+    for (auto &block : blocks){
+        totalBlocks += 1;
+        int xPos = block[0];
+        int yPos = block[1];
+        if ((xPos < 0 || xPos >= xDimensions) || (yPos < 0 || yPos >= yDimensions)){
+            return false;
+        }
+    }
+    if (totalBlocks > (xDimensions * yDimensions)){
+        return false;
+    }
+    return true;
 }

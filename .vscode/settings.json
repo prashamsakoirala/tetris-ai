@@ -51,5 +51,6 @@
         "unordered_map": "cpp",
         "variant": "cpp",
         "map": "cpp"
-    }
+    },
+    "idf.pythonInstallPath": "/opt/anaconda3/bin/python"
 }

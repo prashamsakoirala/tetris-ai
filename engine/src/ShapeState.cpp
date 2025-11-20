@@ -6,6 +6,8 @@ ShapeState::ShapeState(Shape shape, int xPosition, int yPosition, Direction rota
     this->xPosition = xPosition;
     this->yPosition = yPosition;
     this->rotation = rotation;
+    //before setting position, you need to check that its valid within the grid
+    //external check, not internal to shape since shape does not know about grid
 
 }
 
@@ -21,6 +23,8 @@ vector<vector<int>> ShapeState::getPixels(){
 
 bool ShapeState::updateShape(Shape newShape){
     this->shape = &newShape;
+    // validate shape
+    // method is valid shape
 }
 
 bool ShapeState::removeCurrentShape(){

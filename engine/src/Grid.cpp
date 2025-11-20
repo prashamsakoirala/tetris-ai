@@ -1,8 +1,14 @@
 #include "Grid.hpp"
+#include <stdexcept>
 
 Grid::Grid(int xDimension, int yDimension){
-    this->xDimension = xDimension;
-    this->yDimension = yDimension;
+    if (validateGrid(xDimension, yDimension)){
+        this->xDimension = xDimension;
+        this->yDimension = yDimension;
+    } else {
+        throw std::invalid_argument("Shape's bounds should be within a 4x4 square");
+    }
+    // Throw invalid errors, exception if dimensions are invalid
 };
 
 int Grid::getXDimension(){
@@ -12,3 +18,11 @@ int Grid::getXDimension(){
 int Grid::getYDimension(){
     return this->yDimension;
 };
+
+bool validateGrid(int xDimension, int yDimension){
+    if (xDimension > 10 || yDimension > 20 || xDimension < 4 || yDimension < 8){
+        return false;
+    } else {
+        return true;
+    }
+}
