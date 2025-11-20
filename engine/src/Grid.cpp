@@ -1,3 +1,4 @@
+// Done
 #include "Grid.hpp"
 #include <stdexcept>
 
@@ -8,7 +9,6 @@ Grid::Grid(int xDimension, int yDimension){
     } else {
         throw std::invalid_argument("Shape's bounds should be within a 4x4 square");
     }
-    // Throw invalid errors, exception if dimensions are invalid
 };
 
 int Grid::getXDimension(){

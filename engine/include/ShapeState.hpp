@@ -42,19 +42,22 @@ class ShapeState {
     // Do we need to know the rotation of the shape? Wouldn't that be just be stored in position
     // Or shape is static representation and rotation is visual
 
-    bool updateShape(Shape newShape);
-    bool removeCurrentShape();
-
     bool moveLeft();
     bool moveRight();
     bool moveDown();
     bool rotate();
+
+    protected:
+    bool updateShape(Shape newShape);
 
     private:
     Shape* shape;
     int xPosition;
     int yPosition;
     Direction rotation;
+
+    void removeCurrentShape();
+    void addNewShape();
 
     bool updateShapeXPosition(int xPosition);
     bool updateShapeYPosition(int yPosition);

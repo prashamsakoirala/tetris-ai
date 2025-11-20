@@ -1,5 +1,9 @@
 #include "GridState.hpp"
 
+/*
+should i check in bounds for isoccupied?
+*/
+
 GridState::GridState(Grid* grid, vector<vector<int>>& existingBlocks){
     if (validateExistingBlocks(existingBlocks, grid->getXDimension(), grid->getYDimension())){
         this->grid = grid;
@@ -7,8 +11,6 @@ GridState::GridState(Grid* grid, vector<vector<int>>& existingBlocks){
     } else {
         throw std::invalid_argument("Invalid existing blocks");
     }
-    // each existing block should be within grid's bounds, check to make sure it is?
-
 }
 
 GridState::GridState(Grid* grid){
@@ -17,6 +19,9 @@ GridState::GridState(Grid* grid){
 }
 
 bool GridState::isOccupied(int xPosition, int yPosition){
+    if (inBounds(xPosition, yPosition) == false){
+        return false;
+    }
     //if position not within bounds return false?
     for (auto &block : filledBlocks){
         int xPos = block[0];
@@ -28,17 +33,19 @@ bool GridState::isOccupied(int xPosition, int yPosition){
     return false;
 }
 
-bool GridState::addCoordinate(int xCoordinate, int yCoordinate){
-    // if coordinate is out of bounds, then return false? or make sure to check bounds before calling
-    if (!isOccupied(xCoordinate, yCoordinate)){
-        vector<int> updatedCoords;
-        updatedCoords.push_back(xCoordinate);
-        updatedCoords.push_back(yCoordinate);
-        this->filledBlocks.push_back(updatedCoords);
-        return true;
-    } else {
-        return false;
-    }
+bool GridState::isValidCoordinate(int xCoordinate, int yCoordinate){
+    return !isOccupied(xCoordinate, yCoordinate) && inBounds(xCoordinate, yCoordinate);
+}
+
+vector<vector<int>> GridState::getFilledBlocks(){
+    return this->filledBlocks;
+}
+
+void GridState::addCoordinate(int xCoordinate, int yCoordinate){
+    vector<int> updatedCoords;
+    updatedCoords.push_back(xCoordinate);
+    updatedCoords.push_back(yCoordinate);
+    this->filledBlocks.push_back(updatedCoords);
 }
 
 bool GridState::inBounds(int xPosition, int yPosition){
@@ -90,7 +97,6 @@ bool GridState::checkAndClearRows(){
 
     return anyCleared;
 }
-
 
 bool validateExistingBlocks(vector<vector<int>> blocks, int xDimensions, int yDimensions){
     int totalBlocks = 0;
